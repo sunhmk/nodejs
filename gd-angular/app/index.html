@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>杭州.西湖</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <style type='text/css'>
+    #mytest
+    {
+        width: 60px;
+        height: 100px;
+        margin-left: 500px;
+        margin-top: 700px;
+    }
+    </style>
+  </head>
+  <body ng-app="gdAngularApp" ng-controller='MainCtrl'>
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    
+    <div ui-view=""></div>
+    <div class="button-group" ng-show='true' style="bottom:0px;">
+        <div class="container">
+            <div class="row" style=" width: 700px; height: 200px; overflow: scroll;">
+                <div class="panel panel-primary" id=‘mytest’>
+                    <div class="panel-heading">
+                        <div class="panel-title">搜索景区流程</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-xs-3" style="background: red;">
+                            <span>设置当前位置</span>
+                        </div>
+                        <div class="col-xs-3 text-center" style="background: red;">
+                             <button  class="btn btn-primary" onclick='setCurPosition(120.186192,30.257586)'>设置</button> 
+                        </div>
+                        <div class="col-xs-3 text-center" style="background: red;">
+                             <button  class="btn btn-primary" onclick='getWeatherLive("杭州市")'>实时天气</button> 
+                        </div>
+                        <div class="col-xs-3 text-center" style="background: red;">
+                             <button  class="btn btn-primary" onclick='getWeatherForecast("杭州市")'>预测天气</button> 
+                        </div>
+                        <hr class='divider' >
+                         <!--问讯-->
+                        <div class="col-xs-4" style="background: blue;">
+                            <span>问讯操作流程</span>
+                        </div>
+                        <div class="col-xs-4" style="background: blue;">
+                            <button  class="btn btn-primary" onclick='askAbout("杭州市政府")'>搜索》》杭州东站</button>    
+                        </div>
+                        <div class="col-xs-4" style="background: green;">            
+                            <button  class="btn btn-primary" onclick='searchSecond(0)'>选择地点-1</button>
+                        </div>
+
+                        <!--搜索景区-->
+                        <div class="col-xs-4" style="background: green;">
+                            <span>景区操作流程</span>
+                        </div>
+                        <div class="col-xs-4" style="background: green;">
+                            <button  class="btn btn-primary" onclick='searchViewsFirst(120.161741,30.251349,1000)'>搜索景区</button>    
+                        </div>
+                        <div class="col-xs-4" style="background: green;">            
+                            <button  class="btn btn-primary" onclick='searchSecond("0")'>选择景区-1</button>
+                        </div>
+                        <!--搜索美食-->
+                        <div class="col-xs-4" style="background: blue;">
+                            <span>美食操作流程</span>
+                        </div>
+                        <div class="col-xs-4" style="background: blue;">
+                            <button  class="btn btn-primary" onclick='searchFoodsFirst(120.161741,30.251349,1000)'>搜索美食</button>    
+                        </div>
+                        <div class="col-xs-4" style="background: blue;">            
+                            <button  class="btn btn-primary" onclick='searchSecond(1)'>选择美食-2</button>
+                        </div>
+                        <!--搜索酒店-->
+                        <div class="col-xs-4" style="background: yellow;">
+                            <span>酒店操作流程</span>
+                        </div>
+                        <div class="col-xs-4" style="background: yellow;">
+                            <button  class="btn btn-primary" onclick='searchHotelsFirst(120.161741,30.251349,1000)'>搜索酒店</button>    
+                        </div>
+                        <div class="col-xs-4" style="background: yellow;">            
+                            <button  class="btn btn-primary" onclick='searchSecond(4)'>选择酒店-5</button>
+                        </div>
+
+                        <!--搜索厕所-->
+                        <div class="col-xs-4" style="background: red;">
+                            <span>厕所操作流程</span>
+                        </div>
+                        <div class="col-xs-4" style="background: red;">
+                            <button  class="btn btn-primary" onclick='searchToiletsFirst(120.161741,30.251349,1000)'>搜索厕所</button>    
+                        </div>
+                        <div class="col-xs-4" style="background: red;">            
+                            <button  class="btn btn-primary" onclick='searchSecond(3)'>选择厕所-4</button>
+                        </div>
+
+                        <div class="col-xs-4" style="background: yellow;">
+                            <span>选择出行方式</span>
+                        </div>
+                        <div class="col-xs-2" style="background: yellow;">
+                            <button class="btn btn-primary" onclick="gotoByVehicleFirst(0)">驾车路线</button>
+                        </div>
+                        <div class="col-xs-2" style="background: yellow;">
+                            <button class="btn btn-primary" onclick="gotoByVehicleFirst(1)">公交路线</button>
+                        </div>
+                        <div class="col-xs-2" style="background: yellow;">
+                            <button class="btn btn-primary" onclick="gotoByVehicleFirst(2)">骑行路线</button>
+                        </div>
+                        <div class="col-xs-2" style="background: yellow;">
+                            <button class="btn btn-primary" onclick="gotoByVehicleFirst(3)">步行路线</button>
+                        </div>
+
+                        
+                        <hr class='divider'>
+                        <div class="col-xs-2" style="background: red;">
+                            <span>其他操作</span>
+                        </div>
+                        <div class="col-xs-2" style="background: red;">
+                            <button  class="btn btn-primary" onclick='showSearchPlaces(true)'>显示附近选择</button>
+                        </div>
+                        <div class="col-xs-1" style="background: red;">
+                            <button  class="btn btn-primary" onclick='showSearchPlaces(false)'>隐藏附近选择</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/lib/ui-load.js"></script>
+    <script src="scripts/modules/gdservice.js"></script>
+    <script src="scripts/modules/gd.js"></script>
+    <script id='gdkey' src="http://webapi.amap.com/maps?v=1.3&key=c93e1e293e5b1c3dc581f3ff633144d3&plugin=AMap.Autocomplete,AMap.PlaceSearch,AMap.Driving,AMap.Walking,AMap.Riding,AMap.Transfer,AMap.Geocoder,AMap.Weather"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/PlaceSearchRender.js"></script>
+    <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>  
+    <!-- UI组件库 1.0 -->
+    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.10"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <!--js for C++ interface-->
+    <script src="scripts/interface/interface.js"></script>
+    <!--script type="text/javascript">
+        document.writeln(window.GdQuery.Call('setCurPosition'));
+    </script-->
+    <!-- endbuild -->
+</body>
+</html>

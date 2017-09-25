@@ -1,0 +1,8 @@
+<svg width="50" height="40" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="12" rx="11.5" id="svg_1" cy="26.75" cx="23.25" stroke-width="1.5" fill="#0f27ff" stroke="#bbbbbb"/>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="12" id="svg_2" y="12" x="0.5" stroke-opacity="null" stroke-width="0" stroke="#bbbbbb" fill="#ff0022" font-weight="normal" font-style="normal">我的位置</text>
+ </g>
+</svg>
